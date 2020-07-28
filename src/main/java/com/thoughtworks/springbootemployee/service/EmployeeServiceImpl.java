@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements IEmployee {
@@ -36,6 +37,11 @@ public class EmployeeServiceImpl implements IEmployee {
     }
 
     @Override
+    public List<Employee> selectEmployeeByGender(String gender) {
+        return employeeList.stream().filter(employee -> employee.getGender().equals(gender)).collect(Collectors.toList());
+    }
+
+    @Override
     public boolean addEmployee(Employee employee) {
         return employeeList.add(employee);
     }
@@ -51,6 +57,7 @@ public class EmployeeServiceImpl implements IEmployee {
         oldEmployee.setName(employee.getName());
         oldEmployee.setAge(employee.getAge());
         oldEmployee.setGender(employee.getGender());
+        oldEmployee.setCompanyId(employee.getCompanyId());
         return true;
     }
 
