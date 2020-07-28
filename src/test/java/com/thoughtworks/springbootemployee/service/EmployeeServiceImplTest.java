@@ -47,7 +47,16 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void addEmployee() {
+    void should_return_true_when_add_employees_given_employee() {
+        //given
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl(employeeList);
+        Employee employee = new Employee(3 , "xiaogang" , 10 , "male");
+
+        //when
+        boolean res = employeeService.addEmployee(employee);
+
+        //given
+        assertEquals(true , res);
     }
 
     @Test
