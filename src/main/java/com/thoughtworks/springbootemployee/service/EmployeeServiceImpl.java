@@ -11,6 +11,10 @@ public class EmployeeServiceImpl implements IEmployee{
 
     private List<Employee> employeeList = new ArrayList<>();
 
+    public EmployeeServiceImpl(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
     @Override
     public List<Employee> selectAllEmployees() {
         return employeeList;
