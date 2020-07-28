@@ -35,7 +35,15 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void selectEmployeeById() {
+    void should_return_employee_when_select_employees_by_id_given_employeeList_and_id() {
+        //given
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl(employeeList);
+
+        //when
+        Employee employee = employeeService.selectEmployeeById(1);
+
+        //given
+        assertEquals(employeeList.get(1) , employee);
     }
 
     @Test
