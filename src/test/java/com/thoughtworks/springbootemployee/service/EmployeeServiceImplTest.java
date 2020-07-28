@@ -84,4 +84,17 @@ class EmployeeServiceImplTest {
         //given
         assertEquals(true , res);
     }
+
+    @Test
+    void selectEmployeeByPage() {
+        //given
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl(employeeList);
+        Employee employee = new Employee(1, "xiaogang" , 10 , "male");
+
+        //when
+        boolean res = employeeService.updateEmployee(employee);
+
+        //given
+        assertEquals(true , res);
+    }
 }

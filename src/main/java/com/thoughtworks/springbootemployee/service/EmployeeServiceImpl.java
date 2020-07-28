@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmployeeServiceImpl implements IEmployee{
+public class EmployeeServiceImpl implements IEmployee {
 
     private List<Employee> employeeList = new ArrayList<>();
 
@@ -22,7 +22,17 @@ public class EmployeeServiceImpl implements IEmployee{
 
     @Override
     public Employee selectEmployeeById(int id) {
-        return employeeList.stream().filter(employee -> employee.getId() == id) .findFirst().get();
+        return employeeList.stream().filter(employee -> employee.getId() == id).findFirst().get();
+    }
+
+    @Override
+    public List<Employee> selectEmployeeByPage(int page, int pageSize) {
+        if (page > pageSize) return null;
+        List<Employee> employees = new ArrayList<>();
+        for (int i = page - 1; i <= pageSize - page; i++) {
+            employees.add(employeeList.get(i));
+        }
+        return employees;
     }
 
     @Override
@@ -43,4 +53,12 @@ public class EmployeeServiceImpl implements IEmployee{
         oldEmployee.setGender(employee.getGender());
         return true;
     }
+
+    @Override
+    public boolean deleteEmplyeeByCompanyId(int CompanyId) {
+
+        return employeeList.removeIf(employee -> employee.getCompanyId() == CompanyId);
+    }
+
+
 }
