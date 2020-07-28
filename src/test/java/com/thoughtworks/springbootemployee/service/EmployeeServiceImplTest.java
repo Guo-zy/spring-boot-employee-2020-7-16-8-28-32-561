@@ -60,7 +60,16 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    void deleteEmployeeById() {
+    void should_return_true_when_delete_employees_given_employeeId() {
+        //given
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl(employeeList);
+        int employeeId = 1;
+
+        //when
+        boolean res = employeeService.deleteEmployeeById(employeeId);
+
+        //given
+        assertEquals(true , res);
     }
 
     @Test
