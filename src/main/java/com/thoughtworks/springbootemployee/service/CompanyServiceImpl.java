@@ -57,7 +57,7 @@ public class CompanyServiceImpl implements ICompany {
         List<Employee> newEmployees = employees.stream().filter(employee ->  employee.getCompanyId()  == companyId).collect(Collectors.toList());
         Company company = companyList.stream().filter(c -> c.getCompanyId() == companyId).findFirst().get();
         company.setEmployeeList(newEmployees);
-        return false;
+        return true;
     }
 
     @Override
