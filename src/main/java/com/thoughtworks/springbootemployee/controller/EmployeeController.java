@@ -21,19 +21,19 @@ public class EmployeeController {
         return employeeService.selectEmployeeById(id);
     }
 
-
-    @GetMapping("")
-    public List<Employee> selectEmployee(
-            @RequestParam(value = "page", required = false, defaultValue = "-1") int page,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "-1") int pageSize,
-            @RequestParam(value = "gender", required = false, defaultValue = "null") String gender) {
-        if(page >= 1 && pageSize >= 1){
-            return employeeService.selectEmployeeByPage(page,pageSize);
-        }
-        if(!gender.equals("null")){
-            return employeeService.selectEmployeeByGender(gender);
-        }
+    @GetMapping()
+    public List<Employee> selectAllEmployees(){
         return employeeService.selectAllEmployees();
+    }
+
+    @GetMapping(params = "gender")
+    public List<Employee> selectEmployeeByGender(@RequestParam(value="gender") String gender){
+        return employeeService.selectEmployeeByGender(gender);
+    }
+
+    @GetMapping(params = {"page" , "pageSize"})
+    public List<Employee> selectEmployeeByGender(@RequestParam(value="page") int page  , @RequestParam(value = "pageSize") int pageSize){
+        return employeeService.selectEmployeeByPage(page, pageSize);
     }
 
     @PostMapping("")

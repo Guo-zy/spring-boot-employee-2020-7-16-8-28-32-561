@@ -28,11 +28,13 @@ public class CompanyController {
 
 
     @GetMapping()
-    public List<Company> selectCompanys(
-            @RequestParam(value = "page", required = false, defaultValue = "-1") int page,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "-1") int pageSize) {
-        if (page >= 1 && pageSize >= 1) return companyService.selectCompanysByPage(page, pageSize);
+    public List<Company> selectCompanys() {
         return companyService.selectAllCompanys();
+    }
+
+    @GetMapping(params = {"page", "pageSize"})
+    public List<Company> selectCompanysByPage(@RequestParam(value = "page") int page, @RequestParam(value = "pageSize") int pageSize) {
+        return companyService.selectCompanysByPage(page, pageSize);
     }
 
     @PostMapping("{companyId}")
