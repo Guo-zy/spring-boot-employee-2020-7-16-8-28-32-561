@@ -31,7 +31,7 @@ public class CompanyController {
     public List<Company> selectCompanys(
             @RequestParam(value = "page", required = false, defaultValue = "-1") int page,
             @RequestParam(value = "pageSize", required = false, defaultValue = "-1") int pageSize) {
-        if (page != -1) return companyService.selectCompanysByPage(page, pageSize);
+        if (page >= 1 && pageSize >= 1) return companyService.selectCompanysByPage(page, pageSize);
         return companyService.selectAllCompanys();
     }
 

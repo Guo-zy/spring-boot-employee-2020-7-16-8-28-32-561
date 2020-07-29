@@ -36,11 +36,8 @@ public class CompanyServiceImpl implements ICompany {
 
     @Override
     public List<Company> selectCompanysByPage(int page, int pageSize) {
-        List<Company> companies = new ArrayList<>();
-        for (int i = page - 1; i < pageSize; i++) {
-            companies.add(companyList.get(i));
-        }
-        return companies;
+
+        return companyList.stream().skip((page - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
     }
 
     @Override

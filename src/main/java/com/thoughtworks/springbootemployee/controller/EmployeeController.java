@@ -25,9 +25,9 @@ public class EmployeeController {
     @GetMapping("")
     public List<Employee> selectEmployee(
             @RequestParam(value = "page", required = false, defaultValue = "-1") int page,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "1") int pageSize,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "-1") int pageSize,
             @RequestParam(value = "gender", required = false, defaultValue = "null") String gender) {
-        if(page != -1){
+        if(page >= 1 && pageSize >= 1){
             return employeeService.selectEmployeeByPage(page,pageSize);
         }
         if(!gender.equals("null")){

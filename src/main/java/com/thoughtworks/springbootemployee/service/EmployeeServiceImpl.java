@@ -28,12 +28,7 @@ public class EmployeeServiceImpl implements IEmployee {
 
     @Override
     public List<Employee> selectEmployeeByPage(int page, int pageSize) {
-        if (page > pageSize) return null;
-        List<Employee> employees = new ArrayList<>();
-        for (int i = page - 1; i <= pageSize - page; i++) {
-            employees.add(employeeList.get(i));
-        }
-        return employees;
+        return employeeList.stream().skip((page - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
     }
 
     @Override
